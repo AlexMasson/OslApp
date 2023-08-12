@@ -11,4 +11,14 @@ const navBarItems = [
     activeIcon: Icon(Icons.music_note_rounded),
     label: 'Répétitions',
   ),
+  BottomNavigationBarItem(
+    icon: Icon(Icons.music_video),
+    activeIcon: Icon(Icons.music_video_rounded),
+    label: 'Concerts',
+  ),
+  BottomNavigationBarItem(
+    icon: Icon(Icons.library_music),
+    activeIcon: Icon(Icons.library_music_rounded),
+    label: 'Programme',
+  ),
 ];

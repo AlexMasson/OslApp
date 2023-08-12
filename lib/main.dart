@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:osl/repetitions/repetitions-page.dart';
-import 'package:osl/index-page.dart';
+import 'package:osl/concerts/concerts_page.dart';
+import 'package:osl/programe/programme_page.dart';
+import 'package:osl/repetitions/repetitions_page.dart';
+import 'package:osl/index_page.dart';
 
-import 'bottom-navigation-bar-component.dart';
-import 'nav-bar-items.dart';
+import 'bottom_navigation_bar_component.dart';
+import 'nav_bar_items.dart';
 
 void main() {
   initializeDateFormatting('fr_FR', null).then((_) {
@@ -38,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const List<Widget> _pages = <Widget>[IndexPage(), RepetitionsPage()];
+  static const List<Widget> _pages = <Widget>[IndexPage(), RepetitionsPage(), ConcertsPage(), ProgrammePage()];
 
   Widget body = _pages[0];
   String title = navBarItems[0].label!;
