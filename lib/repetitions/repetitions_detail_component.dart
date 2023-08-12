@@ -64,8 +64,8 @@ class RepetitionsDetailsComponent extends StatelessWidget {
       return const Row(children: [Text('Non communiquée')]);
     }
 
-    adresse = '${repetition.lieu} - $adresse';
-    return Row(children: [Text(adresse), IconButton(icon: const Icon(Icons.map), onPressed: () => MapsLauncher.launchQuery(adresse))]);
+    final iconButton = IconButton(icon: const Icon(Icons.map), onPressed: () => MapsLauncher.launchQuery(adresse));
+    return Row(children: [Text('${repetition.lieu} - $adresse'), iconButton]);
   }
 
   String getProgramme() {

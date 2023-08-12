@@ -44,7 +44,7 @@ class _ConcertsListComponentState extends State<ConcertsListComponent> {
         itemBuilder: (context, index) {
           return concerts != null && concerts!.isNotEmpty
               ? ListTile(
-                  leading: SvgPicture.asset('icons/conductor.svg', width: 30),
+                  leading: const Icon(Icons.star, size: 30),
                   title: getTitle(concerts![index]),
                   subtitle: getSubtitle(concerts![index]),
                   onTap: () {

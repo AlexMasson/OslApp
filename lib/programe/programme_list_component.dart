@@ -41,7 +41,7 @@ class _ProgrammeListComponentState extends State<ProgrammeListComponent> {
         itemBuilder: (context, index) {
           return programmeList != null && programmeList!.isNotEmpty
               ? ListTile(
-                  leading: SvgPicture.asset('icons/music.svg', width: 30),
+                  leading: const Icon(Icons.library_music, size: 30),
                   title: Text(programmeList![index].nom, style: const TextStyle(fontWeight: FontWeight.bold)),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProgrammeDetailsComponent(programme: programmeList![index])));

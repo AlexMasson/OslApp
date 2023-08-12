@@ -44,7 +44,8 @@ class _RepetitionsListComponentState extends State<RepetitionsListComponent> {
         itemBuilder: (context, index) {
           return repetitions != null && repetitions!.isNotEmpty
               ? ListTile(
-                  leading: SvgPicture.asset('icons/${getAssetFromRepetitionType(repetitions![index].type)}.svg', width: 30),
+                  leading: Icon(getIconFromRepetitionType(repetitions![index].type), size: 30),
+                  // leading: SvgPicture.asset('icons/${getAssetFromRepetitionType(repetitions![index].type)}.svg', width: 30),
                   title: getTitle(repetitions![index]),
                   subtitle: getSubtitle(repetitions![index]),
                   onTap: () {
@@ -65,6 +66,19 @@ class _RepetitionsListComponentState extends State<RepetitionsListComponent> {
         return 'violin';
       default:
         return '';
+    }
+  }
+
+  IconData getIconFromRepetitionType(String repetitionType) {
+    switch (repetitionType) {
+      case 'Tout le monde':
+        return Icons.music_note;
+      case 'Cuivres + Bois (Partiel)':
+        return Icons.alt_route;
+      case 'Cordes (Partiel)':
+        return Icons.alt_route;
+      default:
+        return Icons.music_note;
     }
   }
 

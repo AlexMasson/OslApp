@@ -12,8 +12,8 @@ const navBarItems = [
     label: 'Répétitions',
   ),
   BottomNavigationBarItem(
-    icon: Icon(Icons.music_video),
-    activeIcon: Icon(Icons.music_video_rounded),
+    icon: Icon(Icons.star),
+    activeIcon: Icon(Icons.star_rounded),
     label: 'Concerts',
   ),
   BottomNavigationBarItem(
