@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'nav-bar-items.dart';
+import 'nav_bar_items.dart';
 
 class BottomNavigationBarComponent extends StatefulWidget {
   const BottomNavigationBarComponent({super.key, required this.onSelectedPageChanged});
