@@ -33,21 +33,28 @@ class _ProgrammeListComponentState extends State<ProgrammeListComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        itemCount: programmeList?.length ?? 0,
-        separatorBuilder: (context, index) {
-          return const Divider(thickness: 0.4);
-        },
-        itemBuilder: (context, index) {
-          return programmeList != null && programmeList!.isNotEmpty
-              ? ListTile(
-                  leading: const Icon(Icons.library_music, size: 30),
-                  title: Text(programmeList![index].nom, style: const TextStyle(fontWeight: FontWeight.bold)),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProgrammeDetailsComponent(programme: programmeList![index])));
-                  },
-                )
-              : null;
+    return RefreshIndicator(
+        child: ListView.separated(
+            itemCount: programmeList?.length ?? 0,
+            separatorBuilder: (context, index) {
+              return const Divider(thickness: 0.4);
+            },
+            itemBuilder: (context, index) {
+              return programmeList != null && programmeList!.isNotEmpty
+                  ? ListTile(
+                      leading: const Icon(Icons.library_music, size: 30),
+                      title: Text(programmeList![index].nom, style: const TextStyle(fontWeight: FontWeight.bold)),
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) => ProgrammeDetailsComponent(programme: programmeList![index])));
+                      },
+                    )
+                  : null;
+            },
+            physics: const AlwaysScrollableScrollPhysics()),
+        onRefresh: () async {
+          programmeList = await fetchProgrammeAsync();
+          super.setState(() {}); // to update widget data
         });
   }
 }

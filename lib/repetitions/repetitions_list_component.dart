@@ -36,23 +36,30 @@ class _RepetitionsListComponentState extends State<RepetitionsListComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        itemCount: repetitions?.length ?? 0,
-        separatorBuilder: (context, index) {
-          return const Divider(thickness: 0.4);
-        },
-        itemBuilder: (context, index) {
-          return repetitions != null && repetitions!.isNotEmpty
-              ? ListTile(
-                  leading: Icon(getIconFromRepetitionType(repetitions![index].type), size: 30),
-                  // leading: SvgPicture.asset('icons/${getAssetFromRepetitionType(repetitions![index].type)}.svg', width: 30),
-                  title: getTitle(repetitions![index]),
-                  subtitle: getSubtitle(repetitions![index]),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RepetitionsDetailsComponent(repetition: repetitions![index])));
-                  },
-                )
-              : null;
+    return RefreshIndicator(
+        child: ListView.separated(
+            itemCount: repetitions?.length ?? 0,
+            separatorBuilder: (context, index) {
+              return const Divider(thickness: 0.4);
+            },
+            itemBuilder: (context, index) {
+              return repetitions != null && repetitions!.isNotEmpty
+                  ? ListTile(
+                      leading: Icon(getIconFromRepetitionType(repetitions![index].type), size: 30),
+                      // leading: SvgPicture.asset('icons/${getAssetFromRepetitionType(repetitions![index].type)}.svg', width: 30),
+                      title: getTitle(repetitions![index]),
+                      subtitle: getSubtitle(repetitions![index]),
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) => RepetitionsDetailsComponent(repetition: repetitions![index])));
+                      },
+                    )
+                  : null;
+            },
+            physics: const AlwaysScrollableScrollPhysics()),
+        onRefresh: () async {
+          repetitions = await fetchRepetitionsAsync();
+          super.setState(() {}); // to update widget data
         });
   }
 

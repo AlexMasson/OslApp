@@ -79,7 +79,7 @@ Future<List<Programme>> fetchProgrammeAsync() async {
     }
   }
 
-  // Filter date in the past, then sort by date ascending
+  programmeList.sort((a, b) => a.nom.compareTo(b.nom));
   return programmeList;
 }
 

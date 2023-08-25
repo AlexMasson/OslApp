@@ -36,22 +36,28 @@ class _ConcertsListComponentState extends State<ConcertsListComponent> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-        itemCount: concerts?.length ?? 0,
-        separatorBuilder: (context, index) {
-          return const Divider(thickness: 0.4);
-        },
-        itemBuilder: (context, index) {
-          return concerts != null && concerts!.isNotEmpty
-              ? ListTile(
-                  leading: const Icon(Icons.star, size: 30),
-                  title: getTitle(concerts![index]),
-                  subtitle: getSubtitle(concerts![index]),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConcertsDetailsComponent(concert: concerts![index])));
-                  },
-                )
-              : null;
+    return RefreshIndicator(
+        child: ListView.separated(
+            itemCount: concerts?.length ?? 0,
+            separatorBuilder: (context, index) {
+              return const Divider(thickness: 0.4);
+            },
+            itemBuilder: (context, index) {
+              return concerts != null && concerts!.isNotEmpty
+                  ? ListTile(
+                      leading: const Icon(Icons.star, size: 30),
+                      title: getTitle(concerts![index]),
+                      subtitle: getSubtitle(concerts![index]),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConcertsDetailsComponent(concert: concerts![index])));
+                      },
+                    )
+                  : null;
+            },
+            physics: const AlwaysScrollableScrollPhysics()),
+        onRefresh: () async {
+          concerts = await fetchConcertsAsync();
+          super.setState(() {}); // to update widget data
         });
   }
 
