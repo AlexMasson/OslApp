@@ -19,7 +19,7 @@ class _BottomNavigationBarComponentState extends State<BottomNavigationBarCompon
     return BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: navBarItems,
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         selectedItemColor: Theme.of(context).colorScheme.primary,
         currentIndex: selectedPageIndex,
         onTap: (value) {
