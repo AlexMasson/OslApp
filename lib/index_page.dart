@@ -8,12 +8,23 @@ class IndexPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(15),
-        child: Column(children: [
-          const Center(child: Column(children: [Text('Bienvenue sur l\'application de l\'OSL !')])),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Text('Bienvenue sur la nouvelle application interne de l\'Orchestre Symphonique de Lyon !'),
+          const SizedBox(height: 10),
+          const Text('Vous trouverez dans cette première version les éléments essentiels sur :'),
+          const Text('\u2022 Les répétitions (lieux et programme).'),
+          const Text('\u2022 Les concerts (lieux et programme).'),
+          const Text('\u2022 Les oeuvres jouées (partitions et extraits audios).'),
+          const SizedBox(height: 20),
+          const Text(
+            'Application consultable depuis mobile, tablette ou pc.',
+            style: TextStyle(color: Colors.black45),
+          ),
+          const SizedBox(height: 30),
           Container(
               padding: const EdgeInsets.all(10),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Liens', style: Theme.of(context).textTheme.titleLarge),
+                Text('Liens externes', style: Theme.of(context).textTheme.titleLarge),
                 const Divider(thickness: 0.4),
                 Row(children: [
                   const Text('\u2022 Drive partitions'),
