@@ -54,7 +54,7 @@ class RepetitionsDetailsComponent extends StatelessWidget {
       case 'Opéra':
         adresse = '102 rue de Marseille 69007 Lyon';
         break;
-      case 'Emile Cohl':
+      case 'Ecole Emile Cohl':
         adresse = '1 rue Felix Rollet 69003 Lyon';
       case 'ENS':
         adresse = '46 allée d\'Italie 69007 Lyon';

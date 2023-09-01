@@ -23,7 +23,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'OSL App',
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(0, 209, 51, 61)), useMaterial3: true),
+      themeMode: ThemeMode.light,
+      theme: ThemeData(
+          brightness: Brightness.light, colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(0, 209, 51, 61)), useMaterial3: true),
+      darkTheme: ThemeData(
+          brightness: Brightness.light, colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(0, 209, 51, 61)), useMaterial3: true),
       home: const MyHomePage(title: 'Accueil'),
       builder: EasyLoading.init(),
     );

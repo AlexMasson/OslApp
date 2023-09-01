@@ -19,6 +19,6 @@ const navBarItems = [
   BottomNavigationBarItem(
     icon: Icon(Icons.library_music),
     activeIcon: Icon(Icons.library_music_rounded),
-    label: 'Programme',
+    label: 'Partitions',
   ),
 ];

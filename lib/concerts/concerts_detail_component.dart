@@ -39,6 +39,10 @@ class ConcertsDetailsComponent extends StatelessWidget {
             const Divider(thickness: 0.4),
             Text(getProgramme()),
             const SizedBox(height: 10),
+            Text('Commentaire', style: Theme.of(context).textTheme.titleLarge),
+            const Divider(thickness: 0.4),
+            Text(getCommentaire()),
+            const SizedBox(height: 10),
           ])),
     );
   }
@@ -89,5 +93,13 @@ class ConcertsDetailsComponent extends StatelessWidget {
     }
 
     return programme;
+  }
+
+  String getCommentaire() {
+    if (concert.commentaire == null || concert.commentaire!.isEmpty) {
+      return 'Aucun commentaire';
+    }
+
+    return concert.commentaire!;
   }
 }
