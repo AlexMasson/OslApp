@@ -5,15 +5,16 @@ import 'package:osl/concerts/concerts_page.dart';
 import 'package:osl/programe/programme_page.dart';
 import 'package:osl/repetitions/repetitions_page.dart';
 import 'package:osl/index_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'bottom_navigation_bar_component.dart';
 import 'nav_bar_items.dart';
 
-void main() {
-  initializeDateFormatting('fr_FR', null).then((_) {
-    runApp(const MyApp());
-    EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.wave;
-  });
+Future main() async {
+  await dotenv.load(fileName: ".env");
+  await initializeDateFormatting('fr_FR', null);
+  runApp(const MyApp());
+  EasyLoading.instance.indicatorType = EasyLoadingIndicatorType.wave;
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'OSL App',
+      title: 'OSL App${dotenv.env['ENVIRONMENT'] == 'dev' ? ' dev' : ''}',
       themeMode: ThemeMode.light,
       theme: ThemeData(
           brightness: Brightness.light, colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(0, 209, 51, 61)), useMaterial3: true),
