@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class IndexPage extends StatelessWidget {
@@ -34,9 +35,7 @@ class IndexPage extends StatelessWidget {
                 ]),
                 Row(children: [
                   const Text('\u2022 Trombinoscope'),
-                  IconButton(
-                      icon: const Icon(Icons.link),
-                      onPressed: () => launchUrl(Uri.parse('https://drive.google.com/file/d/1berEUYaZ2uFsThjnoAEqVX6btew_fIi_/view?usp=share_link')))
+                  IconButton(icon: const Icon(Icons.link), onPressed: () => launchUrl(Uri.parse(dotenv.env['TROMBI_URL'].toString())))
                 ]),
               ]))
         ]));

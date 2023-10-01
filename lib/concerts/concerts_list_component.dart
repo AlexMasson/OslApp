@@ -68,7 +68,7 @@ class _ConcertsListComponentState extends State<ConcertsListComponent> {
   }
 
   Row getSubtitle(Concert concert) {
-    final confirmation = concert.confirmation != null
+    final confirmation = concert.confirmation != null && concert.confirmation!.isNotEmpty
         ? RoundedBackgroundText(concert.confirmation!,
             backgroundColor: switch (concert.confirmation) {
               'Confirmé' => Colors.green,
@@ -79,7 +79,18 @@ class _ConcertsListComponentState extends State<ConcertsListComponent> {
             style: const TextStyle(color: Colors.white))
         : null;
 
+    final commentaireImportant = concert.commentaireImportant != null && concert.commentaireImportant!.isNotEmpty
+        ? RoundedBackgroundText(concert.commentaireImportant!,
+            backgroundColor: Colors.yellow, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold))
+        : null;
+
     var items = <Widget>[];
+
+    if (commentaireImportant != null) {
+      items.add(commentaireImportant);
+      items.add(const SizedBox(width: 15));
+    }
+
     items.add(Text(concert.nom));
 
     if (confirmation != null) {
