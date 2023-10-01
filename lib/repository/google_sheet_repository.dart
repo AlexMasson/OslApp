@@ -34,7 +34,9 @@ Future<List<Repetition>> fetchRepetitionsAsync() async {
       final date = DateFormat('dd-MM-yyyy').parse(item[fieldsMap[Repetition.dateCsvField]!]);
       final type = item[fieldsMap[Repetition.typeCsvField]!].toString().trim();
       final lieu = item[fieldsMap[Repetition.lieuCsvField]!].toString().trim();
+      final adresse = item[fieldsMap[Repetition.adresseCsvField]!].toString().trim();
       final confirmation = item[fieldsMap[Repetition.confirmationCsvField]!].toString().trim();
+      final commentaireImportant = item[fieldsMap[Repetition.commentaireImportantCsvField]!].toString().trim();
       final commentaire = item[fieldsMap[Repetition.commentaireCsvField]!].toString().trim();
       final horaire = item[fieldsMap[Repetition.horaireCsvField]!].toString().trim();
 
@@ -58,7 +60,7 @@ Future<List<Repetition>> fetchRepetitionsAsync() async {
       addProgrammeIfNotEmpty(item[fieldsMap[Repetition.programme10CsvField]!]);
 
       if (type != '') {
-        repetitions.add(Repetition(date, type, lieu, confirmation, commentaire, horaire, programmeList));
+        repetitions.add(Repetition(date, type, lieu, adresse, confirmation, commentaireImportant, commentaire, horaire, programmeList));
       }
     } catch (ex) {
       developer.log('Unable to load repetition.');
@@ -142,6 +144,7 @@ Future<List<Concert>> fetchConcertsAsync() async {
       final adresse = item[fieldsMap[Concert.adresseCsvField]!].toString().trim();
       final heureArriveeMusiciens = item[fieldsMap[Concert.heureArriveeMusiciensCsvField]!].toString().trim();
       final heureConcert = item[fieldsMap[Concert.heureConcertCsvField]!].toString().trim();
+      final commentaireImportant = item[fieldsMap[Concert.commentaireImportantCsvField]!].toString().trim();
       final commentaire = item[fieldsMap[Concert.commentaireCsvField]!].toString().trim();
 
       var programmeList = <String>[];
@@ -164,7 +167,8 @@ Future<List<Concert>> fetchConcertsAsync() async {
       addProgrammeIfNotEmpty(item[fieldsMap[Concert.programme10CsvField]!]);
 
       if (nom != '') {
-        concerts.add(Concert(date, nom, confirmation, adresse, heureArriveeMusiciens, heureConcert, commentaire, programmeList));
+        concerts
+            .add(Concert(date, nom, confirmation, adresse, heureArriveeMusiciens, heureConcert, commentaireImportant, commentaire, programmeList));
       }
     } catch (ex) {
       developer.log('Unable to load concert.');

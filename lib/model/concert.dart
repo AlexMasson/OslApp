@@ -5,11 +5,13 @@ class Concert {
   final String? adresse;
   final String? heureArriveeMusiciens;
   final String? heureConcert;
+  final String? commentaireImportant;
   final String? commentaire;
 
   final List<String>? programmeList;
 
-  Concert(this.date, this.nom, this.confirmation, this.adresse, this.heureArriveeMusiciens, this.heureConcert, this.commentaire, this.programmeList);
+  Concert(this.date, this.nom, this.confirmation, this.adresse, this.heureArriveeMusiciens, this.heureConcert, this.commentaireImportant,
+      this.commentaire, this.programmeList);
 
   static String dateCsvField = 'Date';
   static String nomCsvField = 'Nom';
@@ -17,6 +19,7 @@ class Concert {
   static String adresseCsvField = 'Adresse';
   static String heureArriveeMusiciensCsvField = 'Heure arrivée musiciens';
   static String heureConcertCsvField = 'Heure concert';
+  static String commentaireImportantCsvField = 'Commentaire important';
   static String commentaireCsvField = 'Commentaire';
   static String programme1CsvField = 'Programme_1';
   static String programme2CsvField = 'Programme_2';

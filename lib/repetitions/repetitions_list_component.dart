@@ -96,9 +96,9 @@ class _RepetitionsListComponentState extends State<RepetitionsListComponent> {
     return Row(children: [Text('$date | $lieu', style: const TextStyle(fontWeight: FontWeight.bold))]);
   }
 
-  Row getSubtitle(Repetition repetition) {
-    final confirmation = repetition.confirmation != null
-        ? RoundedBackgroundText(repetition.confirmation!,
+  Widget getSubtitle(Repetition repetition) {
+    final confirmation = repetition.confirmation != null && repetition.confirmation!.isNotEmpty
+        ? RoundedBackgroundText(repetition.confirmation == 'En attente de confirmation' ? 'A confirmer' : repetition.confirmation!,
             backgroundColor: switch (repetition.confirmation) {
               'Confirmée' => Colors.green,
               'En attente de confirmation' => Colors.orange,
@@ -108,9 +108,20 @@ class _RepetitionsListComponentState extends State<RepetitionsListComponent> {
             style: const TextStyle(color: Colors.white))
         : null;
 
+    final commentaireImportant = repetition.commentaireImportant != null && repetition.commentaireImportant!.isNotEmpty
+        ? RoundedBackgroundText(repetition.commentaireImportant!,
+            backgroundColor: Colors.yellow, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold))
+        : null;
+
     final type = Text(repetition.type);
 
     var items = <Widget>[];
+
+    if (commentaireImportant != null) {
+      items.add(commentaireImportant);
+      items.add(const SizedBox(width: 15));
+    }
+
     items.add(type);
 
     if (confirmation != null) {

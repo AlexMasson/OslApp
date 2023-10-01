@@ -45,19 +45,19 @@ class RepetitionsDetailsComponent extends StatelessWidget {
   }
 
   Row getAddress() {
-    if (repetition.lieu == null) {
-      return const Row(children: [Text('Non communiquée')]);
-    }
-
     var adresse = 'Non communiquée';
-    switch (repetition.lieu) {
-      case 'Opéra':
-        adresse = '102 rue de Marseille 69007 Lyon';
-        break;
-      case 'Ecole Emile Cohl':
-        adresse = '1 rue Felix Rollet 69003 Lyon';
-      case 'ENS':
-        adresse = '46 allée d\'Italie 69007 Lyon';
+    if (repetition.adresse != null && repetition.adresse!.isNotEmpty) {
+      adresse = repetition.adresse!;
+    } else if (repetition.lieu != null && repetition.lieu!.isNotEmpty) {
+      switch (repetition.lieu) {
+        case 'Opéra':
+          adresse = '102 rue de Marseille 69007 Lyon';
+          break;
+        case 'Ecole Emile Cohl':
+          adresse = '1 rue Felix Rollet 69003 Lyon';
+        case 'ENS':
+          adresse = '46 allée d\'Italie 69007 Lyon';
+      }
     }
 
     if (adresse == 'Non communiquée') {
