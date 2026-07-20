@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "osl-web",
+      "runtimeExecutable": "dart",
+      "runtimeArgs": ["pub", "global", "run", "dhttpd", "--path", "build/web", "--port", "8123"],
+      "port": 8123
+    }
+  ]
+}

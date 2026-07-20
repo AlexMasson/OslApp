@@ -37,22 +37,23 @@ jobs:
           file: web/manifest.json
           field: description
           value: OSL App dev
-      - uses: subosito/flutter-action@v1
+      - uses: subosito/flutter-action@v2
         with:
-          channel: 'beta'
+          channel: 'stable'
+          flutter-version: '3.38.9'
       - name: Create .env file
         uses: SpicyPizza/create-envfile@v2.0.2
         with:
           envkey_REPETITIONS_CSV_URL: ${{ vars.REPETITIONS_CSV_URL }}
           envkey_CONCERTS_CSV_URL: ${{ vars.CONCERTS_CSV_URL }}
           envkey_PROGRAMME_CSV_URL: ${{ vars.PROGRAMME_CSV_URL }}
-          envkey_TROMBI_URL: ${{ vars.TROMBI_URL }}
+          envkey_LIENS_CSV_URL: ${{ vars.LIENS_CSV_URL }}
           envkey_ENVIRONMENT: ${{ vars.ENVIRONMENT }}
       - name: Install packages
         run: |
           flutter config --enable-web
           flutter pub get
-          flutter build web --web-renderer canvaskit --target=lib/main.dart --release
+          flutter build web --target=lib/main.dart --release
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
