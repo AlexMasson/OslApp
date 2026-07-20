@@ -46,7 +46,7 @@ jobs:
           envkey_REPETITIONS_CSV_URL: ${{ vars.REPETITIONS_CSV_URL }}
           envkey_CONCERTS_CSV_URL: ${{ vars.CONCERTS_CSV_URL }}
           envkey_PROGRAMME_CSV_URL: ${{ vars.PROGRAMME_CSV_URL }}
-          envkey_TROMBI_URL: ${{ vars.TROMBI_URL }}
+          envkey_LIENS_CSV_URL: ${{ vars.LIENS_CSV_URL }}
           envkey_ENVIRONMENT: ${{ vars.ENVIRONMENT }}
       - name: Install packages
         run: |

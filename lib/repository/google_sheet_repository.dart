@@ -7,6 +7,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:osl/model/concert.dart';
+import 'package:osl/model/lien.dart';
 import 'package:osl/model/programme.dart';
 
 import '../model/repetition.dart';
@@ -180,4 +181,42 @@ Future<List<Concert>> fetchConcertsAsync() async {
   concerts = concerts.where((element) => element.date.add(const Duration(days: 1)).isAfter(DateTime.now())).toList();
   concerts.sort((a, b) => a.date.compareTo(b.date));
   return concerts;
+}
+
+Future<List<Lien>> fetchLiensAsync() async {
+  final url = Uri.parse('${dotenv.env['LIENS_CSV_URL']}&version=${DateTime.now().toIso8601String()}');
+  final response = await client.get(url);
+
+  final liensRaw = const CsvToListConverter().convert(utf8.decode(response.bodyBytes), eol: "\n", fieldDelimiter: ',');
+
+  if (liensRaw.isEmpty) {
+    return <Lien>[];
+  }
+
+  var fieldsMap = HashMap<String, int>();
+  var fieldIndex = 0;
+  for (var header in liensRaw[0]) {
+    fieldsMap[header.toString().trim()] = fieldIndex;
+    fieldIndex++;
+  }
+
+  liensRaw.removeAt(0);
+
+  var liens = <Lien>[];
+  for (var item in liensRaw) {
+    try {
+      final nom = item[fieldsMap[Lien.nomCsvField]!].toString().trim();
+      final lienUrl = item[fieldsMap[Lien.urlCsvField]!].toString().trim();
+
+      if (nom != '' && lienUrl != '') {
+        liens.add(Lien(nom, lienUrl));
+      }
+    } catch (ex) {
+      developer.log('Unable to load lien.');
+      developer.log(ex.toString());
+    }
+  }
+
+  // No sort: the sheet row order is the display order
+  return liens;
 }
